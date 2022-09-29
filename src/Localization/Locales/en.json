@@ -1,0 +1,24 @@
+{
+    "translation": {
+        "Login": {
+            "login": "Login ",
+            "logout": "LogOut"
+        },
+        "ErrorMessages": {
+            "failureMessage": ""
+        },
+        "DashBoard": {
+            "message": "Welcome to dashboard"
+        },
+        "Network": {
+            "connectionWith": "You are connected with {{network}}",
+            "noConnectivity": "You are not connected to internet"
+        },
+        "ProfilePage": {
+            "pageName": "ProfilePage",
+            "name": "Name",
+            "year": "Year",
+            "color": "Color"
+        }
+    }
+}
