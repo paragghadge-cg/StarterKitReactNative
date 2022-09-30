@@ -8,6 +8,7 @@ import AuthNavigator from './AuthNavigator';
 import { connect } from 'react-redux';
 import { UserData } from '../Types/DataTypes';
 import { ColorSchemeName } from 'react-native';
+import DrawerNavigator from './DrawerNavigator';
 
 interface RootNavigatorProps {
     userData?: UserData;
@@ -37,7 +38,8 @@ class RootNavigator extends PureComponent<RootNavigatorProps, RootNavigatorState
     render() {
         return (
             <NavigationContainer theme={theme[this.getTheme()]} ref={this.setNavigationReference}>
-                {this.props?.userData?.name?.length > 0 ? <AppNavigator /> : <AuthNavigator />}
+                {/* {this.props?.userData?.name?.length > 0 ? <AppNavigator /> : <AuthNavigator />} */}
+                <DrawerNavigator />
             </NavigationContainer>
         );
     }
