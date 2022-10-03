@@ -63,11 +63,11 @@ class DrawerNavigator extends Component {
                     component={DashBoard}
                     options={{
                         headerShown: true,
-                        headerRight: () => (
-                            <TouchableOpacity style={{ marginRight: 10 }}>
-                                <Icon name="home" color="black" family="FontAwesome"></Icon>
-                            </TouchableOpacity>
-                        )
+                        // headerRight: () => (
+                        //     <TouchableOpacity style={{ marginRight: 10 }}>
+                        //         <Icon name="home" color="black" family="FontAwesome"></Icon>
+                        //     </TouchableOpacity>
+                        // )
                     }}
                 />
                 <Drawer.Screen

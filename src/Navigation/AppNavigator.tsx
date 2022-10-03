@@ -8,6 +8,7 @@ import HomePage from '../Screens/HomePage/HomePage';
 import DrawerNavigator from './DrawerNavigator';
 import AboutPage from '../Screens/About/AboutPage';
 import HelpPage from '../Screens/Help/HelpPage';
+import DetailsPage from '../Screens/DetailsPage/DetailsPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -58,6 +59,8 @@ export default class AppNavigator extends Component {
                     options={{ headerShown: false }}
                 />
                 <Stack.Screen name={'Help'} component={HelpPage} options={{ headerShown: false }} />
+                <Stack.Screen name={'Details'} component={DetailsPage} options={{ headerShown: false }} />
+
             </Stack.Navigator>
         );
     }

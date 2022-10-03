@@ -33,10 +33,15 @@ class DashBoard extends PureComponent<DashBoardProps, DashBoardState> {
         super(props);
         this.state = {
             list: [
-                {
+                {   name:'Alstom',
                     id: 1
                 },
                 {
+                    name:'Github',
+                    id: 2
+                },
+                {
+                    name:'Azure',
                     id: 2
                 }
             ]
@@ -49,22 +54,23 @@ class DashBoard extends PureComponent<DashBoardProps, DashBoardState> {
 
     renderItem = ({ item }: any) => {
         return (
-            <View style={styles.card}>
-                <Text style={{ marginTop: 5 }}>{item.id}</Text>
-            </View>
+            <TouchableOpacity style={styles.card} onPress={()=>NavigationManager.navigate('Details' , item)}>
+                <Text style={{ marginTop: 5 }}>{item.name}</Text>
+            </TouchableOpacity>
         );
     };
+    private keyExtractor = (item: any, index: any) => index.toString();
     render() {
         return (
             <View testID={automationIds.DashboardPage_MainView} style={styles.mainContainer}>
                 <CustomTopNav title="Dashboard" showIcon />
-                {/* <TouchableOpacity onPress={this.navigate}>
+                {/* <TouchableOpacity >
                     <Text style={styles.text}>{strings('DashBoard.message')}</Text>
-                </TouchableOpacity> */}
-                {/* <Text> {this.props.userData.name}</Text>
-                <Text> {this.props.userData.name}</Text> */}
+                </TouchableOpacity>  */}
+
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <FlatList data={this.state.list} renderItem={this.renderItem} />
+                    <Text>Welcome {this.props.userData}</Text>
+                    <FlatList data={this.state.list} renderItem={this.renderItem}  keyExtractor={this.keyExtractor}/>
                 </View>
             </View>
         );
@@ -82,11 +88,13 @@ const styles = StyleSheet.create({
         elevation: 8,
         backgroundColor: 'white',
         padding: 20,
-        borderRadius: 10,
+         borderRadius: 10,
         marginTop: 50,
-        alignItems: 'center',
         justifyContent: 'center',
-        width: 300
+        width: 350,
+        borderColor: 'black',
+        borderWidth: 2
+
     }
 });
 

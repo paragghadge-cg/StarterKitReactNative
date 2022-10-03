@@ -24,21 +24,17 @@ class HelpPage extends PureComponent<HelpPageProps, HelpPageState> {
                     <Image
                         resizeMode="cover"
                         style={{ width: '100%', height: 300, borderBottomRightRadius: 200 }}
-                        source={{
-                            uri: 'https://img.freepik.com/free-vector/online-doctor-consultation-illustration_88138-414.jpg?t=st=1646637883~exp=1646638483~hmac=b058a6946827ab600258aec0a686336fbb27c64f400022d78882b4a1a04dbf31&w=1060'
-                        }}
+                        source={require('../../Assets/help.jpg')}
                     />
                 </View>
 
                 <View style={style.view2}>
                     <Text style={style.view3}>Help Desk : Email</Text>
                     <Text style={style.view4}>care@gmail.com</Text>
-                  
                 </View>
                 <View style={style.view2}>
                     <Text style={style.view3}>Help Desk : Number</Text>
                     <Text style={style.view4}>+91 12121211212</Text>
-                   
                 </View>
                 <View>
                     <Text style={{ marginTop: '20%', paddingLeft: 20 }}>

@@ -11,150 +11,180 @@ import NavigationManager from '../Helper/NavigationManager';
  * Define all props with data type
  */
 interface LoginPageProps {
-    dispatch: Dispatch;
-    addUserData(userData: UserData): any;
+  dispatch: Dispatch;
+  addUserData(userData: UserData): any;
 }
 
 /**
  * Define all state variable with data type
  */
 interface LoginPageState {
-    name: string;
+  email: string;
+  password: string;
 }
 
 class LoginPage extends PureComponent<LoginPageProps, LoginPageState> {
-    constructor(props: LoginPageProps) {
-        super(props);
-        this.state = {
-            name: ''
-        };
+  constructor(props: LoginPageProps) {
+    super(props);
+    this.state = {
+      email: '',
+      password: ''
+    };
+  }
+  isValidEmail = (data: string) => {
+    let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let isValid = regex.test(data);
+    // console.log('isValidemail', isValid, data);
+    return isValid && data?.trim().length;
+  };
+
+  hasWhiteSpace = (s: string) => {
+    return /\s/g.test(s);
+  };
+
+  isValidPassword = (data: string) => {
+    return data?.length > 5 && !this.hasWhiteSpace(data);
+  };
+
+  /**
+   * Start any function name with small letter
+   */
+  navigateToDashBoard = () => {
+    const checkValidEmail = this.isValidEmail(this.state.email);
+    const checkValidPassword = this.isValidPassword(this.state.password);
+
+    if (
+      this.state.password &&
+      this.state.email !== '' &&
+      checkValidEmail &&
+      checkValidPassword
+    ) {
+      this.props.dispatch(addUserData(this.state.email));
+
+      NavigationManager.navigate('App');
+    } else {
+      console.log('pls enter your credentials correctly');
     }
+  };
 
-    /**
-     * Start any function name with small letter
-     */
-    navigateToDashBoard = () => {
-        // let value = {
-        //   name: this.state.name
-        // };
-        // this.props.dispatch(addUserData(value));
-        NavigationManager.navigate('App');
-    };
+  setName = (value: string) => {
+    this.setState({
+      email: value
+    });
+  };
+  setPassword = (value: string) => {
+    this.setState({
+      password: value
+    });
+  };
 
-    setName = (value: string) => {
-        this.setState({
-            name: value
-        });
-    };
-
-    render() {
-        return (
-            <View style={style.mainContainer}>
-                {/* <TextInput placeholder="Name" onChangeText={this.setName} />
+  render() {
+    return (
+      <View style={style.mainContainer}>
+        {/* <TextInput placeholder="Name" onChangeText={this.setName} />
         <TouchableOpacity onPress={this.navigateToDashBoard} style={style.buttonStyle}>
           <Text>{strings('Login.login')}</Text>
         </TouchableOpacity> */}
 
-                <View
-                    style={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginTop: 50
-                    }}
-                >
-                    <Image
-                        source={{
-                            uri: 'https://solarimpulse.com/files/companies/logo/2020-03-05-163724/ALSTOM-Transport-SA.png'
-                        }}
-                        style={{ height: 100, width: 300 }}
-                        resizeMode={'contain'}
-                    />
-                </View>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 50
+          }}
+        >
+          <Image
+            source={require('../Assets/ALSTOM-Transport-SA.png')}
+            style={{ height: 100, width: 300 }}
+            resizeMode={'contain'}
+          />
+        </View>
 
-                <View
-                    style={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginTop: 40,
-                        width: '100%'
-                    }}
-                >
-                    <View style={style.inputView}>
-                        <TextInput
-                            style={style.TextInput}
-                            placeholder="Email."
-                            placeholderTextColor="#003f5c"
-                            onChangeText={this.setName}
-                        />
-                    </View>
-                    <View style={style.inputView}>
-                        <TextInput
-                            style={style.TextInput}
-                            placeholder="Password."
-                            placeholderTextColor="#003f5c"
-                        />
-                    </View>
-                    <View
-                        style={{
-                            marginTop: 20,
-                            flexDirection: 'row',
-                            justifyContent: 'space-evenly',
-                            marginLeft: 20
-                        }}
-                    >
-                        <View style={{ margin: 10 }}>
-                            <Button
-                                title="Login"
-                                color={'#9a91b3'}
-                                onPress={this.navigateToDashBoard}
-                            />
-                        </View>
-                        <View style={{ margin: 10 }}>
-                            <Button
-                                title="Sighn up"
-                                color={'#9a91b3'}
-                                onPress={() => NavigationManager.navigate('Signup')}
-                            />
-                        </View>
-                    </View>
-                </View>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 40,
+            width: '100%'
+          }}
+        >
+          <View style={style.inputView}>
+            <TextInput
+              style={style.TextInput}
+              placeholder="Email."
+              placeholderTextColor="#003f5c"
+              onChangeText={this.setName}
+            />
+          </View>
+          <View style={style.inputView}>
+            <TextInput
+              style={style.TextInput}
+              placeholder="Password."
+              placeholderTextColor="#003f5c"
+              onChangeText={this.setPassword}
+            />
+          </View>
+          <View
+            style={{
+              marginTop: 20,
+              flexDirection: 'row',
+              justifyContent: 'space-evenly',
+              marginLeft: 20
+            }}
+          >
+            <View style={{ margin: 10 }}>
+              <Button
+                title="Login"
+                color={'#9a91b3'}
+                onPress={this.navigateToDashBoard}
+              />
             </View>
-        );
-    }
+            <View style={{ margin: 10 }}>
+              <Button
+                title="Sign up"
+                color={'#9a91b3'}
+                onPress={() => NavigationManager.navigate('Signup')}
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    );
+  }
 }
 
 /**
  * use camel case name  for style object name
  */
 const style = StyleSheet.create({
-    mainContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
-    buttonStyle: { marginTop: 20 },
-    container: {
-        flex: 1,
-        backgroundColor: 'white'
-    },
-    inputView: {
-        backgroundColor: '#ede9f7',
-        height: 40,
-        marginTop: 20,
-        // alignItems: "center",
-        justifyContent: 'center',
-        width: '89%'
-    },
+  mainContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
+  buttonStyle: { marginTop: 20 },
+  container: {
+    flex: 1,
+    backgroundColor: 'white'
+  },
+  inputView: {
+    backgroundColor: '#ede9f7',
+    height: 40,
+    marginTop: 20,
+    // alignItems: "center",
+    justifyContent: 'center',
+    width: '89%'
+  },
 
-    TextInput: {
-        height: 50,
-        padding: 10,
-        marginLeft: 20
-    },
-    form: {
-        alignItems: 'center',
-        backgroundColor: 'rgb(58, 58, 60)',
-        borderRadius: 8,
-        flexDirection: 'row',
-        height: 48,
-        paddingHorizontal: 16
-    }
+  TextInput: {
+    height: 50,
+    padding: 10,
+    marginLeft: 20
+  },
+  form: {
+    alignItems: 'center',
+    backgroundColor: 'rgb(58, 58, 60)',
+    borderRadius: 8,
+    flexDirection: 'row',
+    height: 48,
+    paddingHorizontal: 16
+  }
 });
 
 export default connect()(LoginPage);
