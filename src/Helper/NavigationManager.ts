@@ -1,4 +1,5 @@
 import { CommonActions, NavigationContainerRef } from '@react-navigation/native';
+import { NavigationContainer, DrawerActions } from '@react-navigation/native';
 
 /**
  * To type check our route name and params we can create an object type
@@ -58,6 +59,10 @@ const NavigationManager = {
      */
     goBack() {
         this.navigator!.dispatch(CommonActions.goBack());
+    },
+
+    openDrawer(){
+        this.navigator!.dispatch(DrawerActions.openDrawer())
     }
 };
 
