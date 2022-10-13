@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react';
-import { Text, TouchableOpacity, View, StyleSheet, TextInput, Button, Image } from 'react-native';
-import { strings } from '../Localization/i18n';
+import { Button, Image, StyleSheet, TextInput, View } from 'react-native';
 import { connect } from 'react-redux';
-import { UserData } from '../Types/DataTypes';
 import { Dispatch } from 'redux';
-import { addUserData } from '../ReduxStore/Reducers/GlobalReducers';
 import NavigationManager from '../Helper/NavigationManager';
+import { addUserData } from '../ReduxStore/Reducers/GlobalReducers';
+import { UserData } from '../Types/DataTypes';
 
 /**
  * Define all props with data type
@@ -60,7 +59,7 @@ class LoginPage extends PureComponent<LoginPageProps, LoginPageState> {
       checkValidPassword
     ) {
       this.props.dispatch(addUserData(this.state.email));
-
+      this.setState({email:'',password:''})
       NavigationManager.navigate('App');
     } else {
       console.log('pls enter your credentials correctly');
@@ -90,7 +89,7 @@ class LoginPage extends PureComponent<LoginPageProps, LoginPageState> {
           style={{
             justifyContent: 'center',
             alignItems: 'center',
-            marginTop: 50
+            marginTop: 20
           }}
         >
           <Image
@@ -125,23 +124,19 @@ class LoginPage extends PureComponent<LoginPageProps, LoginPageState> {
             />
           </View>
           <View
-            style={{
-              marginTop: 20,
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              marginLeft: 20
-            }}
+            style={style.viewStyle}
           >
-            <View style={{ margin: 10 }}>
+            <View style={{ margin: 10,width:300 }}>
               <Button
-                title="Login"
+                title="Sign In"
                 color={'#9a91b3'}
                 onPress={this.navigateToDashBoard}
+                
               />
             </View>
             <View style={{ margin: 10 }}>
               <Button
-                title="Sign up"
+                title="SSO"
                 color={'#9a91b3'}
                 onPress={() => NavigationManager.navigate('Signup')}
               />
@@ -157,7 +152,7 @@ class LoginPage extends PureComponent<LoginPageProps, LoginPageState> {
  * use camel case name  for style object name
  */
 const style = StyleSheet.create({
-  mainContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
+  mainContainer: { alignItems: 'center', justifyContent: 'center', flex: 1,marginBottom:20 },
   buttonStyle: { marginTop: 20 },
   container: {
     flex: 1,
@@ -184,7 +179,14 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     height: 48,
     paddingHorizontal: 16
-  }
+  },
+ viewStyle:{
+  marginTop: 20,
+  // flexDirection: 'row',
+  justifyContent: 'space-evenly',
+  marginLeft: 20
+
+ }
 });
 
 export default connect()(LoginPage);

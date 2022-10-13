@@ -9,10 +9,12 @@ import DrawerNavigator from './DrawerNavigator';
 import AboutPage from '../Screens/About/AboutPage';
 import HelpPage from '../Screens/Help/HelpPage';
 import DetailsPage from '../Screens/DetailsPage/DetailsPage';
+import LanguageChangePage from '../Screens/LanguageChangePage/LanguageChangePage';
+import { connect } from 'react-redux';
 
 const Stack = createNativeStackNavigator();
 
-export default class AppNavigator extends Component {
+export  class AppNavigator extends Component {
     constructor(props: any) {
         super(props);
     }
@@ -60,8 +62,17 @@ export default class AppNavigator extends Component {
                 />
                 <Stack.Screen name={'Help'} component={HelpPage} options={{ headerShown: false }} />
                 <Stack.Screen name={'Details'} component={DetailsPage} options={{ headerShown: false }} />
+                <Stack.Screen name={'LanguageChangePage'} component={LanguageChangePage} options={{ headerShown: false }} />
 
             </Stack.Navigator>
         );
     }
 }
+
+const mapStateToProps = (state: any) => {
+    return {
+        language: state.globalReducer.language
+    };
+};
+export default connect(mapStateToProps)(AppNavigator);
+

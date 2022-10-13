@@ -1,0 +1,21 @@
+{
+    "translation": {
+        "Login": {
+            "login": "Anmeldung ",
+            "logout": "Ausloggen"
+        },
+        "ErrorMessages": {
+            "failureMessage": ""
+        },
+        "DashBoard": {
+            "message": "Willkommen beim Dashboard"
+        },
+        "language":{
+            "german":"deutsch",
+            "english":"English"
+
+        }
+    
+       
+    }
+}

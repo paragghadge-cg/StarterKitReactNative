@@ -19,6 +19,11 @@
             "name": "Name",
             "year": "Year",
             "color": "Color"
+        },
+        "language":{
+            "german":"German",
+            "english":"English"
+
         }
     }
 }

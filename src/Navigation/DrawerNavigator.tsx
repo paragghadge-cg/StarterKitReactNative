@@ -24,8 +24,9 @@ function CustomDrawerContent(props: any) {
         <DrawerContentScrollView {...props}>
             {/* <DrawerItemList {...props} /> */}
             <DrawerItem label="Dashboard" onPress={() => NavigationManager.navigate('DashBoard')} />
-            <DrawerItem label="About" onPress={() => NavigationManager.navigate('About')} />
+            <DrawerItem label="Alerts & subscriptions" onPress={() => NavigationManager.navigate('About')} />
             <DrawerItem label="Help" onPress={() => NavigationManager.navigate('Help')} />
+            <DrawerItem label="LanguageChange" onPress={() => NavigationManager.navigate('LanguageChangePage')} />
 
             <DrawerItem
                 label="Logout"
@@ -63,11 +64,7 @@ class DrawerNavigator extends Component {
                     component={DashBoard}
                     options={{
                         headerShown: true,
-                        // headerRight: () => (
-                        //     <TouchableOpacity style={{ marginRight: 10 }}>
-                        //         <Icon name="home" color="black" family="FontAwesome"></Icon>
-                        //     </TouchableOpacity>
-                        // )
+                        
                     }}
                 />
                 <Drawer.Screen
@@ -87,8 +84,16 @@ class DrawerNavigator extends Component {
     }
 }
 
+
+const mapStateToProps = (state: any) => {
+    return {
+        language: state.globalReducer.language
+    };
+};
+
 const mapDispatchToProps = (dispatch: any) => {
     return {};
 };
 
-export default connect(null, mapDispatchToProps)(DrawerNavigator);
+
+export default connect(mapStateToProps, mapDispatchToProps)(DrawerNavigator);

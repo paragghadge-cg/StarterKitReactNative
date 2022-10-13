@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 const INITIAL_STATE = {
-    userData: {}
+    userData: {},
+    language: 'en'
 };
 
 const globalSlice = createSlice({
@@ -14,6 +15,10 @@ const globalSlice = createSlice({
         addUserData: (state, action) => {
             console.log(action)
             state.userData = action.payload;
+        },
+        setLanguage: (state, action) => {
+            console.log('action payload',action.payload);
+            state.language = action.payload;
         }
     }
 });
@@ -22,6 +27,6 @@ const globalSlice = createSlice({
 const { actions, reducer } = globalSlice;
 
 // export individual action creator functions
-export const { addUserData } = actions;
+export const { addUserData, setLanguage } = actions;
 
 export default reducer;

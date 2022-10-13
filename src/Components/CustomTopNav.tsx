@@ -12,7 +12,8 @@ interface CustomTopNavProps {
     showIcon?: boolean,
      onPress?:any,
     navigation?:any,
-    dispatch?:any
+    dispatch?:any,
+    iconName?:string
 }
 
 interface CustomTopNavState {
@@ -32,17 +33,21 @@ onPressButton= ()=>{
     render() {
         return (
             <View style={style.mainContainer}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' ,alignItems:'center',padding:10}}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' ,alignItems:'center',padding:10,backgroundColor:'#4e61f2'}}>
+                {this.props.showIcon&& 
                     <View>
-                    {this.props.showIcon&& <TouchableOpacity onPress={this.onPressButton}>
+                  <TouchableOpacity onPress={this.onPressButton}>
                         <Icon name="menu" color="black" family="Feather" size={25}></Icon>
-                        </TouchableOpacity> }
+                        </TouchableOpacity> 
                     </View>
+    }
                     <View>
                         <Text style={{fontSize:20}}>{this.props.title}</Text>
                     </View>
                     <View>
-                     
+                    <TouchableOpacity onPress={this.onPressButton}>
+                        <Icon name={this.props.iconName|| 'logout'} color="black" family="MaterialIcons" size={25}></Icon>
+                        </TouchableOpacity> 
                     </View>
                 </View>
             </View>
